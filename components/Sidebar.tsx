@@ -24,7 +24,7 @@ const Sidebar = ({ user }: SidebarProps) => {
                 </Link>
 
                 {sidebarLinks.map(item => {
-                    // Apply active class depending on the active route using shadcn 'cn' util
+                    // Apply active class depending on the active route
                     const isActive = pathname === item.route || pathname.startsWith(`${item.route}`)
 
                     return (
