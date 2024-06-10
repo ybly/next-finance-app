@@ -38,7 +38,11 @@ const Sidebar = ({ user }: SidebarProps) => {
                         </Link>
                     )
                 })}
+
+                {/* USER */}
             </nav>
+
+            {/* FOOTER */}
         </section>
     )
 }
