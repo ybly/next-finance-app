@@ -1,9 +1,20 @@
-import { sidebarLinks } from '@/constants'
-import Image from 'next/image'
-import Link from 'next/link'
+
+'use client'
+
 import React from 'react'
 
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+import { sidebarLinks } from '@/constants'
+
+import { cn } from '@/lib/utils'
+
 const Sidebar = ({ user }: SidebarProps) => {
+    // Client Component hook that lets you read the current URL's pathname.
+    const pathname = usePathname()
+
     return (
         <section className='sidebar'>
             <nav className='flex flex-col gap-4'>
@@ -13,8 +24,18 @@ const Sidebar = ({ user }: SidebarProps) => {
                 </Link>
 
                 {sidebarLinks.map(item => {
+                    // Apply active class depending on the active route using shadcn 'cn' util
+                    const isActive = pathname === item.route || pathname.startsWith(`${item.route}`)
+
                     return (
-                        <Link href={item.route} key={item.label}>{item.label}</Link>
+                        <Link href={item.route} key={item.label} className={cn('sidebar-link', {
+                            'bg-bank-gradient': isActive
+                        })}>
+                            <div className='relative size-6'>
+                                <Image src={item.imgURL} alt={item.label} fill className={cn({ 'brightness-[3] invert-0': isActive })} />
+                            </div>
+                            <p className={cn('sidebar-label', { '!text-white': isActive })}>{item.label}</p>
+                        </Link>
                     )
                 })}
             </nav>
