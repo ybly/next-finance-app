@@ -1,4 +1,4 @@
-'user server';
+'use server';
 
 export const login = async () => {
 	try {
