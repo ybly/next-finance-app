@@ -1,26 +1,29 @@
 import React from 'react'
 
 import {
-    Form,
     FormControl,
-    FormDescription,
     FormField,
-    FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-function CustomFormInput({ form, type, name, label, placeholder }: {
-    form: any
-    name: string;
+import { z } from 'zod';
+import { Control, FieldPath } from 'react-hook-form'
+import { authFormSchema } from '@/lib/utils';
+
+interface CustomFormInput {
+    formControl: Control<z.infer<typeof authFormSchema>>;
+    name: FieldPath<z.infer<typeof authFormSchema>>;
     label: string;
     placeholder: string;
     type?: string;
-}) {
+}
+
+function CustomFormInput({ formControl, type, name, label, placeholder }: CustomFormInput) {
     return (
         <FormField
-            control={form.control}
+            control={formControl}
             name={name}
             render={({ field }) => (
                 <div className='form-item'>
@@ -30,7 +33,7 @@ function CustomFormInput({ form, type, name, label, placeholder }: {
                             <Input
                                 className='input-class'
                                 placeholder={placeholder}
-                                type={type}
+                                type={type ? type : 'text'}
                                 {...field}
                             />
                         </FormControl>
