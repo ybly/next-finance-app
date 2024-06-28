@@ -5,7 +5,6 @@ import TotalBalanceBox from '@/components/TotalBalanceBox'
 import RightSidebar from '@/components/RightSidebar'
 
 const Home = () => {
-    // for now...
     const loggedIn = { firstName: 'John', lastName: 'Smith', email: 'john.smith@email.com' }
 
     return (

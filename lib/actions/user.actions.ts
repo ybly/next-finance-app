@@ -7,14 +7,13 @@ import { parseStringify } from '../utils';
 
 export const login = async ({ email, password }: signInProps) => {
 	try {
-		// Mutation / Database / make fetch
 		const { account } = await createAdminClient();
 
-		const response = account.createEmailPasswordSession(email, password);
+		const response = await account.createEmailPasswordSession(email, password);
 
 		return parseStringify(response);
 	} catch (error) {
-		console.error('Error', error);
+		console.error('Login Error', error);
 	}
 };
 
@@ -42,7 +41,7 @@ export const signUp = async (userData: SignUpParams) => {
 
 		return parseStringify(newUserAccount);
 	} catch (error) {
-		console.error('Error', error);
+		console.error('Sign-Up Error', error);
 	}
 };
 
