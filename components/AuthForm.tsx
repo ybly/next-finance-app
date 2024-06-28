@@ -24,9 +24,11 @@ const AuthForm = ({ type }: { type: string }) => {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
+    const formSchema = authFormSchema(type);
+
     // 1. Define your form.
-    const form = useForm<z.infer<typeof authFormSchema>>({
-        resolver: zodResolver(authFormSchema),
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
             password: ""
@@ -34,7 +36,7 @@ const AuthForm = ({ type }: { type: string }) => {
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof authFormSchema>) {
+    function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         setIsLoading(true)
@@ -77,6 +79,56 @@ const AuthForm = ({ type }: { type: string }) => {
                 <>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+
+                            {
+                                type === 'sign-up' && (
+                                    <>
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='firstName'
+                                            label='First Name'
+                                            placeholder='Enter your first name'
+                                        />
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='lastName'
+                                            label='Last Name'
+                                            placeholder='Enter your last name'
+                                        />
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='address'
+                                            label='Address'
+                                            placeholder='Enter your specific address'
+                                        />
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='city'
+                                            label='City'
+                                            placeholder='Example: London'
+                                        />
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='postcode'
+                                            label='Post Code'
+                                            placeholder='Example: SW1A 1AA'
+                                        />
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='dob'
+                                            label='Date of Birth'
+                                            placeholder='YYYY-MM-DD'
+                                        />
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='ni'
+                                            label='National Insurance Number'
+                                            placeholder='QQ123456B'
+                                        />
+                                    </>
+                                )
+                            }
+
                             <CustomFormInput
                                 formControl={form.control}
                                 name='email'
