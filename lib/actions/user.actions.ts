@@ -52,6 +52,7 @@ export async function getLoggedInUser() {
 
 		return parseStringify(user);
 	} catch (error) {
+		console.error('Cannot get logged in user', error);
 		return null;
 	}
 }
