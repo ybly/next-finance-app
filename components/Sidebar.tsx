@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation'
 import { sidebarLinks } from '@/constants'
 
 import { cn } from '@/lib/utils'
+import Footer from './Footer'
 
 const Sidebar = ({ user }: SidebarProps) => {
     // Client Component hook that lets you read the current URL's pathname.
@@ -42,7 +43,8 @@ const Sidebar = ({ user }: SidebarProps) => {
                 {/* USER */}
             </nav>
 
-            {/* FOOTER */}
+            <Footer user={user} />
+
         </section>
     )
 }
