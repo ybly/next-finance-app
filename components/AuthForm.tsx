@@ -130,7 +130,7 @@ const AuthForm = ({ type }: { type: string }) => {
                                             <CustomFormInput
                                                 formControl={form.control}
                                                 name='ni'
-                                                label='National Insurance Number'
+                                                label='National Insurance'
                                                 placeholder='QQ123456B'
                                             />
                                         </div>
