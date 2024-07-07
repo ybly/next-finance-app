@@ -14,7 +14,6 @@ export async function createSessionClient() {
 		throw new Error('No session found');
 	}
 
-	console.trace('set new session', session.value);
 	client.setSession(session.value);
 
 	return {
