@@ -20,6 +20,7 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { login, signUp } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -46,7 +47,20 @@ const AuthForm = ({ type }: { type: string }) => {
             // Sign up with appwrite & create plaid token
             if (type === 'sign-up') {
 
-                const newUser = await signUp(data);
+                const userData = {
+                    firstName: data.firstName!,
+                    lastName: data.lastName!,
+                    address1: data.address1!,
+                    city: data.city!,
+                    state: data.state!,
+                    postalCode: data.postalCode!,
+                    dateOfBirth: data.dateOfBirth!,
+                    ssn: data.ssn!,
+                    email: data.email,
+                    password: data.password
+                }
+
+                const newUser = await signUp(userData);
 
                 setUser(newUser)
             }
@@ -96,7 +110,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
             {user ? (
                 <div className='flex flex-col gap-4'>
-                    {/* {PlaidLink} */}
+                    <PlaidLink user={user} variant='primary' />
                 </div>
             ) : (
                 <>
@@ -123,37 +137,44 @@ const AuthForm = ({ type }: { type: string }) => {
 
                                         <CustomFormInput
                                             formControl={form.control}
-                                            name='address'
+                                            name='address1'
                                             label='Address'
                                             placeholder='Enter your specific address'
+                                        />
+
+                                        <CustomFormInput
+                                            formControl={form.control}
+                                            name='city'
+                                            label='City'
+                                            placeholder='Enter your city'
                                         />
 
                                         <div className='flex gap-4'>
                                             <CustomFormInput
                                                 formControl={form.control}
-                                                name='city'
-                                                label='City'
-                                                placeholder='Example: London'
+                                                name='state'
+                                                label='State'
+                                                placeholder='Example: NY'
                                             />
                                             <CustomFormInput
                                                 formControl={form.control}
-                                                name='postcode'
-                                                label='Post Code'
-                                                placeholder='Example: SW1A 1AA'
+                                                name='postalCode'
+                                                label='Postal Code'
+                                                placeholder='Example: 11101'
                                             />
                                         </div>
 
                                         <div className='flex gap-4'>
                                             <CustomFormInput
                                                 formControl={form.control}
-                                                name='dob'
+                                                name='dateOfBirth'
                                                 label='Date of Birth'
                                                 placeholder='YYYY-MM-DD'
                                             />
                                             <CustomFormInput
                                                 formControl={form.control}
-                                                name='ni'
-                                                label='National Insurance'
+                                                name='ssn'
+                                                label='SSN'
                                                 placeholder='QQ123456B'
                                             />
                                         </div>
