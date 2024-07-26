@@ -24,6 +24,10 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
     // const account = await getAccount({ appwriteItemId })
 
+    console.log({
+        accountsData
+    })
+
     return (
         <section className='home'>
             <div className='home-content'>
@@ -31,7 +35,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
                     <HeaderBox
                         type='greeting'
                         title='Welcome'
-                        user={loggedInUser?.firstName || 'Guest'}
+                        user={`${loggedInUser?.firstName} ${loggedInUser?.lastName}` || 'Guest'}
                         subtext='Access and manage your account and transactions.'
                     />
 
@@ -46,7 +50,11 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
             </div>
 
-            <RightSidebar user={loggedInUser} transactions={accounts?.transactions} banks={accountsData?.slice(0, 2)} />
+            <RightSidebar
+                user={loggedInUser}
+                transactions={accounts?.transactions}
+                banks={accountsData?.slice(0, 2)} // limit to two for display
+            />
 
         </section>
     )

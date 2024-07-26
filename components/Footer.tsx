@@ -21,7 +21,7 @@ function Footer({ user, type = 'desktop' }: FooterProps) {
             </div>
 
             <div className={type === 'mobile' ? 'footer_email-mobile' : 'footer_email'}>
-                <h1 className='text-14 truncate font-normal text-gray-700 font-semibold'>{user?.firstName}</h1>
+                <h1 className='text-14 truncate font-normal text-gray-700 font-semibold'>{`${user?.firstName} ${user?.lastName}`}</h1>
                 <p className='text-14 truncate font-normal text-gray-600'>{user?.email}</p>
             </div>
 
