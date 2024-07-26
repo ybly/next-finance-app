@@ -4,10 +4,25 @@ import HeaderBox from '@/components/HeaderBox'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
 import RightSidebar from '@/components/RightSidebar'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
+import { getAccount, getAccounts } from '@/lib/actions/bank.actions'
 
-const Home = async () => {
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
     const loggedInUser = await getLoggedInUser()
+
+    const accounts = await getAccounts({ userId: loggedInUser.$id })
+
+    if (!accounts) {
+        console.error('Accounts not found!', loggedInUser)
+        return
+    }
+
+    const accountsData = accounts?.data
+
+    //WIP
+    // const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId
+
+    // const account = await getAccount({ appwriteItemId })
 
     return (
         <section className='home'>
@@ -16,14 +31,14 @@ const Home = async () => {
                     <HeaderBox
                         type='greeting'
                         title='Welcome'
-                        user={loggedInUser?.name || 'Guest'}
+                        user={loggedInUser?.firstName || 'Guest'}
                         subtext='Access and manage your account and transactions.'
                     />
 
                     <TotalBalanceBox
-                        accounts={[]}
-                        totalBanks={1}
-                        totalCurrentBalance={12500}
+                        accounts={accountsData}
+                        totalBanks={accountsData.totalBanks}
+                        totalCurrentBalance={accountsData?.totalCurrentBalance}
                     />
                 </header>
 
@@ -31,7 +46,7 @@ const Home = async () => {
 
             </div>
 
-            <RightSidebar user={loggedInUser} transactions={[]} banks={[{ currentBalance: 12500 }, { currentBalance: 123 }]} />
+            <RightSidebar user={loggedInUser} transactions={accounts?.transactions} banks={accountsData?.slice(0, 2)} />
 
         </section>
     )
