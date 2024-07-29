@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import { BankTabItem } from './BankTabItem'
 import BankInfo from './BankInfo'
+import TransactionsTable from './TransactionsTable'
 
 const RecentTransactions = ({ accounts, transactions = [], appwriteItemId, page }: RecentTransactionsProps) => {
     return (
@@ -39,8 +40,10 @@ const RecentTransactions = ({ accounts, transactions = [], appwriteItemId, page 
                         />
                     </TabsContent>
                 ))}
-
             </Tabs>
+
+            <TransactionsTable transactions={transactions} />
+
         </section>
     )
 }
