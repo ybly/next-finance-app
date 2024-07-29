@@ -24,9 +24,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
     const account = await getAccount({ appwriteItemId })
 
-    console.log({
-        accountsData
-    })
+    console.log(`Accounts Data (${appwriteItemId}):`, accountsData, account)
 
     return (
         <section className='home'>
@@ -41,8 +39,8 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
                     <TotalBalanceBox
                         accounts={accountsData}
-                        totalBanks={accountsData.totalBanks}
-                        totalCurrentBalance={accountsData?.totalCurrentBalance}
+                        totalBanks={accounts.totalBanks}
+                        totalCurrentBalance={accounts?.totalCurrentBalance}
                     />
                 </header>
 
