@@ -27,7 +27,7 @@ const Sidebar = ({ user }: SidebarProps) => {
 
                 {sidebarLinks.map(item => {
                     // Apply active class depending on the active route
-                    const isActive = pathname === item.route || pathname.startsWith(`${item.route}`)
+                    const isActive = pathname === item.route
 
                     return (
                         <Link href={item.route} key={item.label} className={cn('sidebar-link', {
