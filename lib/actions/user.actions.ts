@@ -298,3 +298,27 @@ export const getBank = async ({ documentId }: getBankProps) => {
 		);
 	}
 };
+
+export const getBankAccountById = async ({
+	accountId,
+}: getBankByAccountIdProps) => {
+	try {
+		const { database } = await createAdminClient();
+
+		const banks = await database.listDocuments(
+			DATABASE_ID!,
+			BANK_COLLECTION_ID!,
+			[Query.equal('accountId', accountId)]
+		);
+
+		if (banks.total !== 1) return null;
+
+		return parseStringify(banks.documents[0]);
+	} catch (error) {
+		console.error(
+			'An error occurred while retrieving user bank account by Id: ',
+			accountId,
+			error
+		);
+	}
+};
