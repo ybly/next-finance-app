@@ -56,7 +56,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
             <RightSidebar
                 user={loggedInUser}
-                transactions={accounts?.transactions}
+                transactions={account?.transactions}
                 banks={accountsData?.slice(0, 2)} // limit to two for display
             />
 
