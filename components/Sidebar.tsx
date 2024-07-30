@@ -11,6 +11,7 @@ import { sidebarLinks } from '@/constants'
 
 import { cn } from '@/lib/utils'
 import Footer from './Footer'
+import PlaidLink from './PlaidLink'
 
 const Sidebar = ({ user }: SidebarProps) => {
     // Client Component hook that lets you read the current URL's pathname.
@@ -19,7 +20,7 @@ const Sidebar = ({ user }: SidebarProps) => {
     return (
         <section className='sidebar'>
             <nav className='flex flex-col gap-4'>
-                <Link href='/' className='mb-12 cursor-pointer items-center gap-2'>
+                <Link href='/' className='flex mb-12 cursor-pointer items-center gap-2'>
                     <Image src='/icons/logo.svg' width={34} height={34} alt='logo' className='size-[24px] max-xl:size-14' />
                     <h1 className='sidebar-logo'>Next Bank</h1>
                 </Link>
@@ -40,7 +41,7 @@ const Sidebar = ({ user }: SidebarProps) => {
                     )
                 })}
 
-                {/* USER */}
+                <PlaidLink user={user} />
             </nav>
 
             <Footer user={user} />
