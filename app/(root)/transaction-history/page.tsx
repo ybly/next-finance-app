@@ -22,7 +22,7 @@ const TransactionHistory = async ({ searchParams: { id, page } }: SearchParamPro
 
     const account = await getAccount({ appwriteItemId })
 
-    console.log(`Accounts Data (${appwriteItemId}):`, accountsData, account)
+    // console.log(`Accounts Data (${appwriteItemId}):`, accountsData, account)
 
     return (
         <div className='transactions'>
