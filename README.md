@@ -14,7 +14,7 @@
 
 A Fintech Banking Application built with Next.js that allows users to connect multiple bank accounts via [Plaid's](https://plaid.com) open banking integration display transactions in real-time, and perform bank payments using [Dwolla's API](https://www.dwolla.com/).
 
-👉 Visit the [application](next-finance-app-nu.vercel.app)
+👉 Visit the [application](https://next-finance-app-nu.vercel.app/login)
 
 ## <a name="tech-stack">🛠️ Tech Stack</a>
 
