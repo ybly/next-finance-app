@@ -51,8 +51,8 @@ const Copy = ({ title }: { title: string }) => {
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="mr-2 size-4"
                 >
                     <polyline points="20 6 9 17 4 12"></polyline>
