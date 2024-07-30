@@ -25,6 +25,7 @@ const MyBanks = async () => {
                             <BankCard key={accounts.id}
                                 account={a}
                                 userName={loggedInUser?.firstName}
+                                showBalance={true}
                             />
                         ))}
                     </div>

@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 
 import { formatAmount } from '@/lib/utils'
+import Copy from './Copy'
 
 const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
     return (
@@ -59,9 +60,10 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
                         className='absolute top-0 left-0'
                     />
                 </div>
-
-                {/* COPY */}
             </Link>
+
+            {showBalance && <Copy title={account?.shareableId} />}
+
         </div>
     )
 }
