@@ -299,7 +299,7 @@ export const getBank = async ({ documentId }: getBankProps) => {
 	}
 };
 
-export const getBankAccountById = async ({
+export const getBankByAccountId = async ({
 	accountId,
 }: getBankByAccountIdProps) => {
 	try {
